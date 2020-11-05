@@ -7,7 +7,8 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import CafeScreen from '../screens/CafeScreen';
+import { BottomTabParamList, TabOneParamList, TabTwoParamList, CafeParamList } from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -28,6 +29,13 @@ export default function BottomTabNavigator() {
       <BottomTab.Screen
         name="TabTwo"
         component={TabTwoNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Cafes"
+        component={CafeNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
         }}
@@ -67,7 +75,21 @@ function TabTwoNavigator() {
         name="TabTwoScreen"
         component={TabTwoScreen}
         options={{ headerTitle: 'Tab Two Title' }}
-      />
+        />
     </TabTwoStack.Navigator>
+  );
+}
+
+const CafeStack = createStackNavigator<CafeParamList>();
+
+function CafeNavigator() {
+  return (
+    <CafeStack.Navigator>
+      <CafeStack.Screen
+        name="CafeScreen"
+        component={CafeScreen}
+        options={{ headerTitle: 'Cafe' }}
+      />
+    </CafeStack.Navigator>
   );
 }
